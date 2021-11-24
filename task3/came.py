@@ -6,34 +6,35 @@ import os
 
 lis = []
 l = []
-dic = {
-    'Name':'-',
-    'Father Name':'-',
-    'Gender':'-',
-    'Country of Stay':'Pakistan',
-    'Identity Number':'-',
-    'Date of Birth':'-',
-    'Date of Issue':'-',
-    'Date of Expiry':'-'
-    }
-def proces():
 
+def proces():
+    dic = {
+        'Name':'-',
+        'Father Name':'-',
+        'Gender':'-',
+        'Country of Stay':'Pakistan',
+        'Identity Number':'-',
+        'Date of Birth':'-',
+        'Date of Issue':'-',
+        'Date of Expiry':'-'
+        }
     reader = Reader(['en'])
-    if os.path.isfile('id.avi'):
-        cap = cv2.VideoCapture('id.avi')
+    if os.path.isfile('output2.avi'):
+        cap = cv2.VideoCapture('output2.avi')
     else:
         return 'Streaming Not found record again'
     while True:
         ret,fram = cap.read()
         if ret == 0:
             break
-        cv2.imshow('hey',fram)
-        if cv2.waitKey(1)==ord('q'):
-            break
+        # cv2.imshow('hey',fram)
+        # if cv2.waitKey(1)==ord('q'):
+        #     break
         results = reader.readtext(fram)
         if '-' in dic.values():    
             for i in range(len(results)):
                 if results[i][2] > 0.8:
+                    print(results[i][1])
                     if  results[i][1] == 'Name' and dic['Name'] == '-' and results[i+1][1] not in dic.keys():
                         dic[results[i][1]] = results[i+1][1]
                 
@@ -46,20 +47,20 @@ def proces():
                         
                     if results[i][1] not in dic.keys() and len(results[i][1].split('.'))==3 and len(results[i][1])==10 and len(lis)<3:
                         lis.append(results[i][1])
-                
+
                         if len(lis)==3 and dic['Date of Birth'] == '-' and dic['Date of Issue'] == '-' and dic['Date of Expiry'] == '-':
                             lis.sort(key=lambda date: datetime.strptime(date, "%d.%m.%Y"))
                             dic['Date of Birth'],dic['Date of Issue'],dic['Date of Expiry'] = lis
-                    
+                            print(lis)
+                    print(dic)
                     if dic['Gender'] == '-':        
                         if  results[i][1] == 'M':
                             dic['Gender'] = 'M'
                         elif results[i][1] == 'F':
                             dic['Gender'] = 'F'
-                        else:
-                            dic['Gender'] = 'Not Found'
-        if len(l) == 0:
-            face(fram)
+                    
+            if len(l) == 0:
+                face(fram)
         else:
             print('ok')
             break

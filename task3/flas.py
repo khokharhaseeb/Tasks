@@ -8,7 +8,7 @@ def cam():
     global camera 
     camera = cv2.VideoCapture(0)
     fourcc = cv2.VideoWriter_fourcc('X','V','I','D')
-    cap_rec = cv2.VideoWriter('id.avi',fourcc,40.0,(640,480))
+    cap_rec = cv2.VideoWriter('output2.avi',fourcc,40.0,(640,480))
     while True:
         ret,frame=camera.read()
         if not ret:
