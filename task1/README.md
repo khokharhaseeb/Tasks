@@ -27,7 +27,7 @@ Text Exteaction from Images by Optical Character Recognition models
 
 4 Authors
 
-- [@Muhammad Haseeb Ayoub](https://github.com/khokharhaseeb)
+
 
 
 
