@@ -1,7 +1,5 @@
 import pytesseract
-import shutil
 import os
-import random
 from PIL import Image
 # os.sys.path.append(r'Control Panel\Programs\Programs and Features\Tesseract-OCR')
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
