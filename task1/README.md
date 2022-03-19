@@ -1,5 +1,5 @@
 
-Text Exteaction from Images by Optical Character Recognition models
+Text Extraction from Images by Optical Character Recognition models
 
  OCR models are provided with images and model will recognize the text and try to extract the text.
  we have three different models in our repository which we have to download and import first.
